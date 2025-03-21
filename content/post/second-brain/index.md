@@ -1,138 +1,85 @@
 ---
-title: 🧠 Sharpen your thinking with a second brain
-summary: Create a personal knowledge base and share your knowledge with your peers.
-date: 2023-10-26
-authors:
-  - admin
-tags:
-  - Second Brain
-  - Markdown
-image:
-  caption: 'Image credit: [**Unsplash**](https://unsplash.com)'
+title: Непрерывная интеграция и непрерывное развертывание (CI/CD)
+summary: Сегодня я расскажу вам о непрерывной интеграции и непрерывном развертывании (CI/CD)
+date: 2025-03-21
 ---
 
-Create a personal knowledge base and share your knowledge with your peers.
+Welcome 👋
 
-Hugo Blox web framework empowers you with one of the most flexible note-taking capabilities out there.
+{{< toc mobile_only=true is_open=true >}}
 
-Create a powerful knowledge base that works on top of a local folder of plain text Markdown files.
+# Что такое CI/CD
 
-Use it as your second brain, either publicly sharing your knowledge with your peers via your website, or via a private GitHub repository and password-protected site just for yourself.
+## Вводная
 
-## Mindmaps
+Вы, вероятно, слышали термин "CI/CD", но что это такое на самом деле? 
+В простых словах, CI/CD — это методология, которая помогает разработчикам быстрее и безопаснее создавать программное обеспечение. Давайте разберемся, что это значит и как это работает.
+### Что такое непрерывная интеграция (CI)?
 
-Hugo Blox supports a Markdown extension for mindmaps.
+Непрерывная интеграция (Continuous Integration, CI) — это процесс, при котором код, написанный разными разработчиками, автоматически объединяется в одну общую кодовую базу. Это позволяет находить ошибки и конфликты на ранних этапах разработки.  
 
-With this open format, can even edit your mindmaps in other popular tools such as Obsidian.
+Как это работает:  
+1. Разработчик вносит изменения в код и отправляет их в систему контроля версий (например, Git).  
+2. CI-сервер (например, Jenkins, GitHub Actions, GitLab CI) автоматически забирает новый код.  
+3. Запускается сборка проекта (build) и выполняется набор автоматических тестов (unit-тесты, интеграционные тесты).  
+4. Если тесты проходят успешно, изменения считаются стабильными и готовыми к дальнейшей работе. Если нет — разработчик получает уведомление об ошибке.  
 
-Simply insert a Markdown code block labelled as `markmap` and optionally set the height of the mindmap as shown in the example below.
+Преимущества CI:  
+- Раннее обнаружение ошибок.  
+- Уменьшение конфликтов между разными частями кода.  
+- Повышение качества кода за счет автоматического тестирования.  
 
-Mindmaps can be created by simply writing the items as a Markdown list within the `markmap` code block, indenting each item to create as many sub-levels as you need:
+---
 
-<div class="highlight">
-<pre class="chroma">
-<code>
-```markmap {height="200px"}
-- Hugo Modules
-  - Hugo Blox
-  - blox-plugins-netlify
-  - blox-plugins-netlify-cms
-  - blox-plugins-reveal
-```
-</code>
-</pre>
-</div>
+### Что такое непрерывная доставка (CD)?
 
-renders as
+Непрерывная доставка (Continuous Delivery, CD) — это следующий шаг после CI. Если CI отвечает за сборку и тестирование, то CD автоматизирует процесс развертывания (деплоя) кода в тестовую или производственную среду.  
 
-```markmap {height="200px"}
-- Hugo Modules
-  - Hugo Blox
-  - blox-plugins-netlify
-  - blox-plugins-netlify-cms
-  - blox-plugins-reveal
-```
+Как это работает:  
+1. После успешного прохождения CI (код собран и протестирован) CD-система автоматически развертывает его на тестовый сервер.  
+2. Если тестирование в тестовой среде проходит успешно, код может быть развернут в продакшн (вручную или автоматически, в зависимости от настроек).  
 
-Anh here's a more advanced mindmap with formatting, code blocks, and math:
+Преимущества CD:  
+- Быстрое и безопасное развертывание новых функций.  
+- Минимизация рисков при выпуске обновлений.  
+- Возможность частых релизов без ущерба для стабильности системы.  
 
-<div class="highlight">
-<pre class="chroma">
-<code>
-```markmap
-- Mindmaps
-  - Links
-    - [Hugo Blox Docs](https://docs.hugoblox.com/)
-    - [Discord Community](https://discord.gg/z8wNYzb)
-    - [GitHub](https://github.com/HugoBlox/hugo-blox-builder)
-  - Features
-    - Markdown formatting
-    - **inline** ~~text~~ *styles*
-    - multiline
-      text
-    - `inline code`
-    -
-      ```js
-      console.log('hello');
-      console.log('code block');
-      ```
-    - Math: $x = {-b \pm \sqrt{b^2-4ac} \over 2a}$
-```
-</code>
-</pre>
-</div>
+---
 
-renders as
+### Что такое непрерывное развертывание (Continuous Deployment)?
 
-```markmap
-- Mindmaps
-  - Links
-    - [Hugo Blox Docs](https://docs.hugoblox.com/)
-    - [Discord Community](https://discord.gg/z8wNYzb)
-    - [GitHub](https://github.com/HugoBlox/hugo-blox-builder)
-  - Features
-    - Markdown formatting
-    - **inline** ~~text~~ *styles*
-    - multiline
-      text
-    - `inline code`
-    -
-      ```js
-      console.log('hello');
-      console.log('code block');
-      ```
-    - Math: $x = {-b \pm \sqrt{b^2-4ac} \over 2a}$
-```
+Иногда термин CD расшифровывается как Continuous Deployment (непрерывное развертывание). Это более продвинутая версия CD, где код автоматически развертывается в продакшн после успешного прохождения всех тестов, без ручного вмешательства.  
 
-## Highlighting
+Пример:  
+1. Разработчик отправляет изменения в Git.  
+2. CI-система собирает и тестирует код.  
+3. Если тесты успешны, CD-система автоматически развертывает код на продакшн-сервере.  
 
-<mark>Highlight</mark> important text with `mark`:
+Преимущества Continuous Deployment:  
+- Максимальная скорость доставки новых функций пользователям.  
+- Полная автоматизация процесса.  
 
-```html
-<mark>Highlighted text</mark>
-```
+---
 
-## Callouts
+### Почему CI/CD так важно?
 
-Use [callouts](https://docs.hugoblox.com/reference/markdown/#callouts) (aka _asides_, _hints_, or _alerts_) to draw attention to notes, tips, and warnings.
+1. Скорость: Автоматизация позволяет быстрее выпускать обновления.  
+2. Качество: Раннее обнаружение ошибок снижает количество багов в продакшене.  
+3. Безопасность: Автоматическое тестирование и развертывание минимизируют человеческие ошибки.  
+4. Гибкость: Разработчики могут экспериментировать с новыми идеями, не боясь сломать систему.  
 
-By wrapping a paragraph in `{{%/* callout note */%}} ... {{%/* /callout */%}}`, it will render as an aside.
+---
 
-```markdown
-{{%/* callout note */%}}
-A Markdown aside is useful for displaying notices, hints, or definitions to your readers.
-{{%/* /callout */%}}
-```
+### Популярные инструменты CI/CD
 
-renders as
+- Jenkins: Один из самых популярных инструментов с открытым исходным кодом.  
+- GitHub Actions: Интегрированная CI/CD-система от GitHub.  
+- GitLab CI: Встроенная CI/CD-платформа в GitLab.  
+- CircleCI: Облачный инструмент для автоматизации сборки и тестирования.  
+- Travis CI: Еще один популярный облачный инструмент для CI/CD.  
 
-{{% callout note %}}
-A Markdown aside is useful for displaying notices, hints, or definitions to your readers.
-{{% /callout %}}
+---
 
-Or use the `warning` callout type so your readers don't miss critical details:
+### Заключение
 
-{{% callout warning %}}
-A Markdown aside is useful for displaying notices, hints, or definitions to your readers.
-{{% /callout %}}
-
-## Did you find this page helpful? Consider sharing it 🙌
+CI/CD — это не просто модный термин, а мощная методология, которая помогает командам разработчиков работать быстрее, эффективнее и безопаснее. Внедрение CI/CD позволяет минимизировать риски, улучшить качество кода и ускорить доставку новых функций пользователям.
